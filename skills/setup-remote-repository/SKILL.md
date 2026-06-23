@@ -102,7 +102,7 @@ upstream  https://github.com/sharetribe/web-template.git (push)
 
 ### Step 5: Push to Remote
 
-Push the code to your new repository:
+Push the code to the new repository:
 
 ```bash
 git push -u origin main
@@ -125,21 +125,3 @@ Write (or merge into) `.sharetribe/config.json` with the values collected in thi
 ```
 
 If the file already exists, merge these fields — do not overwrite other fields.
-
-## Quick Reference
-
-| Command | Purpose |
-|---------|---------|
-| `git remote -v` | List all remotes |
-| `git remote rename origin upstream` | Rename Sharetribe remote |
-| `git remote add origin <url>` | Add your repo as origin |
-| `git push -u origin main` | Push and set upstream tracking |
-
-## Common Issues
-
-| Problem | Fix |
-|---------|-----|
-| Push rejected (non-fast-forward) | Repo was initialized with content — create a new empty repo |
-| `origin` already exists | Run `git remote remove origin` then re-add |
-| Wrong directory | Run `git remote -v` to confirm you're in the right repo |
-| Authentication failure | Set up a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) |

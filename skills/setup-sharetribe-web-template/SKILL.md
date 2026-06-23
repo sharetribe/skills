@@ -84,7 +84,7 @@ Ask: "Do you have all three credentials? Let me know when you're ready and I'll 
 
 ### Step 4: Run Config Script
 
-Once the user confirms they have their credentials ready, tell them to type the following into their terminal (still in the `web-template/` folder):
+Once the user confirms they have their credentials ready, tell them to type the following into their terminal (still in the `web-template/` folder). Tell the user how to open a terminal window, if necessary, depending on what operating system they are on.
 
 ```bash
 yarn run config
@@ -103,6 +103,8 @@ Explain what will happen:
 Ask: "Did the script finish without errors? You should see a message saying the config was saved."
 
 ### Step 5: Start the Server
+
+Run the following command on behalf of the user.
 
 ```bash
 yarn run dev

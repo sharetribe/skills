@@ -152,17 +152,6 @@ Tell the user simply:
 
 If `stagingUrl` is not in config, tell them to check their Render dashboard for the URL.
 
-### Step 6: Verify on Staging
-
-After a few minutes, ask:
-
-> "Does the change look good on staging at `<stagingUrl>`?"
-
-If something looks wrong on staging but was fine locally, it may be an SSR (server-side rendering) issue. Symptoms: page crashes or shows a blank screen. If this happens:
-- Check the Render logs
-- Look for errors mentioning `window`, `document`, or browser-only APIs
-- Fix the issue and push again (repeat from Step 5)
-
 ## Tone
 
 The user may be non-technical. Use plain language throughout:
@@ -170,10 +159,3 @@ The user may be non-technical. Use plain language throughout:
 - Say "the part of the page that shows listings" not "the ListingCard component"
 - Say "I'll make that change" not "I'll update the JSX"
 - When something goes wrong, explain what happened simply and what you're going to do about it
-
-## Common Issues
-
-| Problem | Fix |
-|---------|-----|
-| Change not visible on staging | Wait 2–4 min for Render to rebuild, then hard-refresh the browser |
-| Works locally but crashes on staging | SSR error — look for browser-only APIs used outside of `useEffect` |
