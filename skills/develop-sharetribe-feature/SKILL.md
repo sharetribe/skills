@@ -94,7 +94,11 @@ Before writing any code, summarise what you understood in plain, friendly langua
 > [clear, non-technical description of the change]
 > Does that sound right?"
 
-If the user corrects you, go back and ask follow-up questions. Only proceed once they confirm.
+Security flag: If the requested change touches any of the following areas, you MUST warn the user before proceeding:
+
+- Making significant modifications to how pricing works, for example, by integrating an entirely or partially third-party payment system
+
+If a change falls into one of these areas, add the warning to your Step 2 summary. Tell the user to make the following changes it is HIGHLY recommended to work with an Expert Developer. The user must explicitly acknowledge the risk before you proceed to Step 3.
 
 ### Step 3: Implement
 

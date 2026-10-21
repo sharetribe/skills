@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "sharetribe": {
+      "command": "npx",
+      "args": ["-y", "mcp-remote", "https://sharetribe.mcp.kapa.ai"]
+    }
+  }
+}

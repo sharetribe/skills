@@ -25,21 +25,36 @@ If the file doesn't exist, continue with Step 1.
 
 ### Step 1: Prerequisites
 
-Ask the user to confirm they have installed:
-- **Git** — [git-scm.com](https://git-scm.com/downloads)
-- **Node.js 22.x** — [nodejs.org](https://nodejs.org/) 
-- **Yarn** — `npm install -g yarn` if not installed
+Check for the required tools automatically by running these commands on behalf of the user (do not ask the user to run them):
 
-Ask: "Do you know if you have Git, Node.js, and Yarn installed?"
+```bash
+git --version
+node --version
+yarn --version
+```
 
-Once they confirm Git is installed, check whether git is configured with a name and email. Ask them to run:
+For any missing tools, attempt to install them on the user's behalf. Detect the user's OS and use the appropriate method:
+
+- **macOS**: Use Homebrew (`brew install <package>`). If Homebrew is not installed, install it first via `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`.
+- **Linux**: Use the system package manager (`apt`, `yum`, `dnf`, etc.).
+- **Windows**: Use `winget` if available. If not, fall back to telling the user to download installers from the links below.
+
+Install missing tools in this order:
+
+1. If **Git** is missing → install it. Fallback: [git-scm.com/downloads](https://git-scm.com/downloads)
+2. If **Node.js** is missing or below version 22 → install Node.js 22.x. Fallback: [nodejs.org](https://nodejs.org/)
+3. If **Yarn** is missing → run `npm install -g yarn`
+
+After each installation, re-run the version check to confirm it succeeded. If an automated install fails, link the user to the fallback URL and wait for them to confirm they've installed it manually.
+
+Once all three tools are confirmed present, check whether git is configured with a name and email:
 
 ```bash
 git config --global user.name
 git config --global user.email
 ```
 
-If either returns blank, ask for their name and email and run:
+If either returns blank, ask the user for their name and email, then run:
 
 ```bash
 git config --global user.name "Their Name"
