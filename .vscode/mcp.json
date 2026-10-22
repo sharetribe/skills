@@ -1,0 +1,12 @@
+{
+  "servers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "sharetribe": {
+      "type": "http",
+      "url": "https://sharetribe.mcp.kapa.ai"
+    }
+  }
+}

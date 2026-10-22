@@ -6,7 +6,16 @@
     "name": "Sharetribe"
   },
   "skills": "./skills/",
-  "mcpServers": "./.mcp.json",
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest"]
+    },
+    "sharetribe": {
+      "type": "http",
+      "url": "https://sharetribe.mcp.kapa.ai"
+    }
+  },
   "interface": {
     "displayName": "Sharetribe",
     "shortDescription": "Setup, deploy, and build features on your Sharetribe marketplace",

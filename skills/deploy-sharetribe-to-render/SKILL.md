@@ -79,6 +79,9 @@ services:
         value: true
       - key: REACT_APP_DEFAULT_SEARCHES_ENABLED
         value: true
+      # Identifies this marketplace as built using sharetribe/skills.
+      - key: REACT_APP_BUILT_WITH
+        value: sharetribe/skills
       - key: REACT_APP_SHARETRIBE_SDK_CLIENT_ID
         sync: false
       - key: SHARETRIBE_SDK_CLIENT_SECRET
