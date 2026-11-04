@@ -8,7 +8,7 @@ user_invocable: true
 
 ## Overview
 
-Interactive guide to deploy the Sharetribe Web Template to Render as a staging environment. The skill writes `render.yaml` to the repo (pre-filling all non-secret values), then walks the user through each dashboard step with checkpoints.
+Interactive guide to deploy the Sharetribe Web Template to Render as a staging environment for testing changes before they go live. The skill writes `render.yaml` to the repo (pre-filling all non-secret values), then walks the user through each dashboard step with checkpoints.
 
 ## Config File
 
@@ -70,7 +70,7 @@ services:
       - key: REACT_APP_MARKETPLACE_ROOT_URL
         value: https://<service-name>.onrender.com
       - key: REACT_APP_SHARETRIBE_USING_SSL
-        value: false
+        value: true
       - key: SERVER_SHARETRIBE_TRUST_PROXY
         value: true
       - key: REACT_APP_CSP
@@ -175,6 +175,8 @@ If the file already exists, merge these fields — do not overwrite other fields
 Once the build completes:
 
 > "Visit https://<service-name>.onrender.com — does your marketplace load?"
+
+This is your staging environment — a safe place to test changes. When you're ready to launch your marketplace publicly, I can help you go live.
 
 If it does not load, the issue is likely in the service name. If a non-unique service name is provided, render will append a random string to the name. This means that REACT_APP_MARKETPLACE_ROOT_URL must match the unique identifier. You must guide the user to find the deployment url via the Render Dashboard, and update the .yaml file accordingly, and push it to git.
 

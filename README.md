@@ -10,6 +10,7 @@ Gives you a guided assistant inside to work with the template. Type `/sharetribe
 - Setting up a staging environment
 - Committing your changes and deploying them to staging
 - Building a new feature or customization
+- Going live with your marketplace
 
 ## Usage
 
