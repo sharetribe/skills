@@ -8,7 +8,7 @@ user_invocable: true
 
 ## Overview
 
-Interactive guide to deploy the Sharetribe Web Template to Render as a staging environment. The skill writes `render.yaml` to the repo (pre-filling all non-secret values), then walks the user through each dashboard step with checkpoints.
+Interactive guide to deploy the Sharetribe Web Template to Render as a staging environment for testing changes before they go live. The skill writes `render.yaml` to the repo (pre-filling all non-secret values), then walks the user through each dashboard step with checkpoints.
 
 ## Config File
 
@@ -34,7 +34,7 @@ Ask the user two questions before touching any files:
 **1a. Service name**
 > "What do you want to name your Render service?"
 
-If `renderServiceName` was found in config, suggest it as the default. Note that the service name should be unique (if not unique, render appends a random string to the name. This will cause issues with deployment, since we need to match assign the deployment URL as an environment variable). If a user types in a generic name, append a short random string to the name to ensure uniqueness.
+If `renderServiceName` was found in config, suggest it as the default. Note that the service name should be unique (if not unique, render appends a random string to the name. This will cause issues with deployment, since we need to match assign the deployment URL as an environment variable). If a user types in a generic name, append a random string to the name to ensure uniqueness.
 
 Also ask for:
 - **Marketplace name** (e.g. "My Marketplace") — pre-fill from config `marketplaceName` if present
@@ -70,7 +70,7 @@ services:
       - key: REACT_APP_MARKETPLACE_ROOT_URL
         value: https://<service-name>.onrender.com
       - key: REACT_APP_SHARETRIBE_USING_SSL
-        value: false
+        value: true
       - key: SERVER_SHARETRIBE_TRUST_PROXY
         value: true
       - key: REACT_APP_CSP
@@ -133,8 +133,11 @@ Walk through each step, asking "Done?" before moving to the next.
 **5a. Create account**
 > "Do you have a Render account? If not, sign up at https://dashboard.render.com/register"
 
-**5b. Create new Blueprint**
-> "In the Render dashboard, navigate to **Blueprints**, and click on **New Blueprint Instance**. Click on **Configure Git Provider**, and configure the new instance using your GitHub account.
+**5b. Create new Blueprint**"
+> "In the Render dashboard, find the "+New" menu icon in the top right hand corner. Select the last menu item, "Blueprint".
+> Click on **Configure GitHub account**, and configure the new instance using your GitHub account.
+> Select the repository we created earlier to connect
+> Give your Blueprint a name (e.g., your marketplace name + staging)
 > "Render will detect the `render.yaml` file and pre-fill the service name, build command, and all non-secret settings automatically."
 
 **5c. Add secret environment variables**
@@ -142,7 +145,7 @@ Tell the user that Render will show a form for all the `sync: false` variables f
 
 | Variable | Value / Where to find it |
 |----------|--------------------------|
-| `REACT_APP_SHARETRIBE_SDK_CLIENT_ID` | Sharetribe Console → Build → Advanced → Applications. Use your **Dev environment** client ID for a dev staging app. |
+| `REACT_APP_SHARETRIBE_SDK_CLIENT_ID` | Sharetribe Console → Build → Advanced → Applications. Use either your Test or Dev environment client ID for this. |
 | `SHARETRIBE_SDK_CLIENT_SECRET` | Same location as Client ID |
 | `REACT_APP_STRIPE_PUBLISHABLE_KEY` | Stripe dashboard — use the test key starting with `pk_test` |
 | `REACT_APP_MARKETPLACE_NAME` | Whatever you want your marketplace to be called |
@@ -172,12 +175,14 @@ If the file already exists, merge these fields — do not overwrite other fields
 
 ### Step 7: Verify
 
-Once the build completes:
+Ask the user has the build completed? You do not have to verify this on behalf of the user.
 
 > "Visit https://<service-name>.onrender.com — does your marketplace load?"
+
+This is your staging environment — a safe place to test changes. When you're ready to launch your marketplace publicly, I can help you go live.
 
 If it does not load, the issue is likely in the service name. If a non-unique service name is provided, render will append a random string to the name. This means that REACT_APP_MARKETPLACE_ROOT_URL must match the unique identifier. You must guide the user to find the deployment url via the Render Dashboard, and update the .yaml file accordingly, and push it to git.
 
 ### Common issues
 
-If the user is having issues with the deployment, ask them to copy and paste the deploy logs into the chat.
+If the user is having issues with the deployment, ask them to copy and paste the deploy logs into the chat. Help the user find the deploy logs in the Render Dashboard.

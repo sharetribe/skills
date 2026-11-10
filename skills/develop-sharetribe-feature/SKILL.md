@@ -15,10 +15,31 @@ Guides the user from a vague idea to a deployed change. Always gather requiremen
 ### Step 0: Read Config
 
 Read `.sharetribe/config.json` if it exists. Note:
-- `stagingUrl` — where the user will see their change
+- `stagingUrl` — where the user will see their change on the staging site
+- `productionUrl` — where the user will see their change on the live site (if `isLive` is true)
 - `marketplaceName` — useful context for understanding the product
+- `isLive` — whether the marketplace has gone live (changes the git workflow)
 
 If config doesn't exist, continue without it (but you'll have less context).
+
+If `isLive` is `true`, check the current branch:
+
+```bash
+git branch --show-current
+```
+
+If not on `staging`, switch to it:
+
+```bash
+git checkout staging
+git pull origin staging
+```
+
+Tell the user if a branch switch happens:
+
+> "Switching to your staging branch so we can test changes before they go live."
+
+All implementation work happens on the `staging` branch when the marketplace is live.
 
 ### Step 1: Understand the Request
 
@@ -130,19 +151,13 @@ Only escalate to the user once you're satisfied the change is correct, or if you
 
 Ask the user to check manually:
 
-> "I've made the change. Check it at http://localhost:3000 — does it work as expected?"
+> ### "I've made the change. Check it at http://localhost:3000 — does it work as expected?"
 
 Before sending this, check if the dev server is running (`lsof -ti :3000`). If not, start it with `yarn run dev` using `run_in_background: true`, then tell the user: "I've started the dev server — give it about 30 seconds, then check http://localhost:3000."
 
 ### Step 5: Commit and Push
 
-Once the user is happy, commit and push without explaining git details:
-
-```bash
-git add -A
-git commit -m "<descriptive message summarising the change in plain language>"
-git push origin main
-```
+Once the user is happy, commit and push without explaining git details.
 
 Write the commit message in plain language describing the change from a user perspective, not a developer perspective.
 
@@ -151,10 +166,51 @@ Examples:
 - "Change the hero banner text to welcome message"
 - "Remove the featured listings section from the landing page"
 
-Tell the user simply:
-> "Done! Your change is on its way to staging. Render takes about 2–4 minutes to rebuild — you can check it at `<stagingUrl>` once it's ready."
+If `isLive` is not `true` (pre-go-live):
+
+```bash
+git add -A
+git commit -m "<descriptive message>"
+git push origin main
+```
+
+> "Done! Your change is on its way to staging. Render takes about 2-4 minutes to rebuild — you can check it at `<stagingUrl>` once it's ready."
+
+If `isLive` is `true` (post-go-live):
+
+```bash
+git add -A
+git commit -m "<descriptive message>"
+git push origin staging
+```
+
+> "Done! Your change is on its way to your staging site. Render takes about 2-4 minutes to rebuild — you can check it at `<stagingUrl>` once it's ready. Once you're happy with the change, I can push it to your live site too."
 
 If `stagingUrl` is not in config, tell them to check their Render dashboard for the URL.
+
+### Step 6: Promote to Production
+
+This step only applies when `isLive` is `true`.
+
+After the user has confirmed the change looks good on the staging site, offer to promote it:
+
+> "Your change looks good on staging. Want me to push it to your live site too?"
+
+If yes:
+
+```bash
+git checkout main
+git pull origin main
+git merge staging
+git push origin main
+git checkout staging
+```
+
+> "Done! Your change will be live in 2-4 minutes. You can check it at `<productionUrl>`."
+
+If no:
+
+> "No problem — your change is live on staging. Just let me know when you want to push it to your live site."
 
 ## Tone
 
