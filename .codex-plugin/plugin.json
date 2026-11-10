@@ -1,6 +1,6 @@
 {
   "name": "sharetribe",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Guided assistant for non-technical users working on the Sharetribe web template — helps with setup, deployment, and building new features.",
   "author": {
     "name": "Sharetribe"
