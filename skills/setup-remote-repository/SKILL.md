@@ -31,13 +31,21 @@ If no config or no `githubRepo`, continue with Step 1.
 
 Ask: "Have you created a new GitHub repository yet?"
 
-If not, direct them to: [Create a GitHub repository](https://help.github.com/en/github/getting-started-with-github/create-a-repo)
+If not, direct them to: [Create a GitHub repository](https://github.com/new)
+
+1. Add a repository name. This can be anything you like!
+2. Add a short description.
+3. Choose visibility: Private. Important: Tell the user it is very important to set the repository as private.
+
+[For additional instructions, see GitHub's documentation](https://help.github.com/en/github/getting-started-with-github/create-a-repo)
 
 **Important:** Tell the user — **do not initialize the repo with anything** (no README, .gitignore, or license). They are importing an existing repository.
 
 Once created, ask the user for:
 - Their **GitHub username**
 - The **repository name** they chose
+
+Tell the user they can also just copy the URL from their browser's address bar to the repository, which should look something like github.com/username/repository-name
 
 ### Step 2: Check Current Remotes
 

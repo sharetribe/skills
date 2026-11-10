@@ -151,7 +151,7 @@ Only escalate to the user once you're satisfied the change is correct, or if you
 
 Ask the user to check manually:
 
-> "I've made the change. Check it at http://localhost:3000 — does it work as expected?"
+> ### "I've made the change. Check it at http://localhost:3000 — does it work as expected?"
 
 Before sending this, check if the dev server is running (`lsof -ti :3000`). If not, start it with `yarn run dev` using `run_in_background: true`, then tell the user: "I've started the dev server — give it about 30 seconds, then check http://localhost:3000."
 

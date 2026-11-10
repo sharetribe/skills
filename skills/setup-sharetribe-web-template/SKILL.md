@@ -85,11 +85,11 @@ Walk the user through finding each one. Don't ask them to share the values with 
 
 **1. Sharetribe Client ID and Client Secret**
 > Go to [console.sharetribe.com](https://console.sharetribe.com) (sign up free if you don't have an account).
-> In the top-left corner, make sure you're in the **Dev environment** — not Test or Live.
+> In the top-left corner, make sure you're in either the Dev or Test environment — not Live.
 > Navigate to **Build → Advanced → Applications**.
 > Copy the **Client ID** and **Client Secret**. Keep them handy (e.g. open Notepad or a text file).
 >
-> ⚠️ Using the wrong environment's credentials is the most common reason setup doesn't work. Double-check the top-left switcher says **Dev**.
+> ⚠️ Using wrong credentials is the most common reason setup doesn't work.
 
 **2. Stripe Publishable Key (Sandbox)**
 > First, connect Stripe to your Sharetribe marketplace by following this guide: [Set up Stripe for a custom marketplace](https://www.sharetribe.com/help/en/articles/8413086-how-to-set-up-stripe-for-payments-on-your-marketplace).
@@ -107,15 +107,18 @@ yarn run config
 
 Explain what will happen:
 
-> "The terminal will ask you three questions, one at a time. Paste each value when prompted and press Enter."
+> "The terminal will ask you four questions, one at a time. Paste each value when prompted and press Enter."
 >
-> 1. `REACT_APP_SHARETRIBE_SDK_CLIENT_ID` → paste your Sharetribe Client ID
-> 2. `SHARETRIBE_SDK_CLIENT_SECRET` → paste your Sharetribe Client Secret
-> 3. `REACT_APP_STRIPE_PUBLISHABLE_KEY` → paste your Stripe Sandbox Publishable Key
+> 1. What is your Sharetribe marketplace client ID? → paste your Sharetribe Client ID
+> 2. What is your Sharetribe marketplace client secret? → paste your Sharetribe Client Secret
+> 3. What is your Stripe publishable key? → paste your Stripe Sandbox Publishable Key
+> 4. What is your Mapbox access token? → You can leave this field empty, just press enter.
+> 5. What is the name of your marketplace? → Type in the name of your marketplace (this can be changed later).
+> 6. Do you want to edit advanced settings? → Type in "N", and press enter.
 
 > "This creates a `.env` file in the project. The app won't start without it."
 
-Ask: "Did the script finish without errors? You should see a message saying the config was saved."
+Ask: "Did the script finish without errors? You should see a message saying the .env was saved succesfully."
 
 ### Step 5: Start the Server
 
